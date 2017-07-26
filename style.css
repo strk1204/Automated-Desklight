@@ -1,0 +1,23 @@
+
+
+.centre
+{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.centre2
+{
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.contain
+{
+    width: 100%;
+}
+
