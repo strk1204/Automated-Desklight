@@ -1,7 +1,16 @@
 #!/bin/bash
-sleep 30
+sudo python lightoff.py
+#sleep 30
+sudo python lighton.py
+sleep 10
+sudo python lightoff.py
+sudo python lighton.py
+sudo python lightoff.py
+sleep 2
 cd data/
 #START LOOP
+while true;
+do
 #GET VARS
 mo=`cat man.txt`
 ls=`cat ls.txt`
@@ -12,6 +21,7 @@ light='0'
 #MANUAL OVERRIDE
 if [ $mo = '1' ]; then
 echo 'mo on'
+light='1'
 else
 #END MANUAL OVERRIDE
 #AUTOLIGHT
@@ -34,8 +44,10 @@ echo 'check light on'
 light='1'
 fi
 if [ $ato = '0' ] && [ $ls = '1' ]; then
-echo 'full on'
+level=`sudo sh light.sh`
+if [ $level -lt 10 ]; then
 light='1'
+fi
 fi
 if [ $ato = '1' ] && [ $ls = '0' ]; then
 echo 'ato on'
@@ -45,23 +57,33 @@ else
 if [ $ato = '0' ] && [ $ls = '1' ]; then
 echo 'full on'
 light='1'
-fi
 fi 
 #END AUTOLIGHT
-else
+fi
 #LIGHT SENSOR
+fi
 if [ $ls = '1' ]; then
-echo 'check light on'
+level=`sudo sh /home/Sean/Desklight/light.sh`
+if [ $level -lt '10' ]; then
 light='1'
+fi
+echo $level
 #END LIGHT SENSOR
 else
 echo 'none'
 fi
 fi
+cd /home/Sean/Desklight
+if [ $light = '1' ]; then
+sudo python lighton.py
+else
+sudo python lightoff.py
 fi
+cd data
 echo $light
 rm light.txt
 touch light.txt
 echo $light >> light.txt
-sleep 5
+#sleep 5
 #END LOOP
+done
