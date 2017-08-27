@@ -35,16 +35,21 @@ ct2=${ct:0:2}${ct:3:5}
 t1=${at2:0:4}
 t2=${at2:4:8}
 if [ $t2 -gt $ct2 ] && [ $ct2 -gt $t1 ]; then
-if [ $ato = '0' ] && [ $ls = '0' ]; then
+if [ $at = '1' ] && [ $ato = '0' ]; then
+light='1'
+fi
+if [ $ato = '1' ] && [ $ls = '0' ]; then
 echo 'full on'
 light='1'
 fi
 if [ $ato = '1' ] && [ $ls = '2' ]; then
-echo 'check light on'
+level=`sudo sh /home/Sean/Desklight/light.sh`
+if [ $level -lt 10 ]; then
 light='1'
 fi
-if [ $ato = '0' ] && [ $ls = '1' ]; then
-level=`sudo sh light.sh`
+fi
+if [ $ato = '1' ] && [ $ls = '1' ]; then
+level=`sudo sh /home/Sean/Desklight/light.sh`
 if [ $level -lt 10 ]; then
 light='1'
 fi

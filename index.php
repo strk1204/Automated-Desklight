@@ -54,7 +54,7 @@ $mano = file_get_contents('data/man.txt');
 <!DOCTYPE html>
 <html lang="en">
     <head>
-	<meta http-equiv="refresh" content="5">
+	<!meta http-equiv="refresh" content="5">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
@@ -84,10 +84,10 @@ $mano = file_get_contents('data/man.txt');
                 <img src="logo2.png" style="margin: 11px 10px">
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li>
-                        <a href="index.html" class="waves-effect hoverable white-text">Controls</a>
+                        <a href="index.php" class="waves-effect hoverable white-text">Controls</a>
                     </li>
-                    <li>
-                        <a href="help.html" class="waves-effect hoverable white-text">Help</a>
+					<li>
+                        <a href="time.html" class="waves-effect hoverable white-text">Set Time</a>
                     </li>
                     <li></li>
                 </ul>
@@ -114,32 +114,32 @@ $mano = file_get_contents('data/man.txt');
                 </div>
             </div>             
         </div>
-        <div id="status" class="col">
-            <div class="container centre contain">
-                <div class="row">
-                    <div class="col s4 white-text center-align">
-                        <h4>
-                        Light Sensor: <?php echo $ls; ?></h4>
-                    </div>
-                    <div class="col s4 white-text center-align">
-                        <h4>
-                        Auto Time: <?php echo $at; ?></h4>
-                    </div>
-                    <div class="col s4 white-text center-align">
-                        <h4>
-                        Manual Override: <?php echo $mano; ?><h4>
-                    </div>
-                </div>
-                <div style="margin-top:50px;">
-                    <div class="white-text center-align">
-                        <h4>
-                        Light: <?php echo $lights; ?></h4>
-                    </div>
-                </div>
-            </div>
+        <div id="status">
+<iframe src="status.php" style="border: 0; width: 100%; height: 100% position:absolute; z-index: 9999;" class="centre">Your browser doesn't support iFrames.</iframe>
         </div>
         <div id="ls" class="col centre white-text"><a href="ls.php"><?php echo $ls2; ?></a></div>
-        <div id="at" class="col centre white-text">Auto on at Set Time</div>
+        <div id="at" class="centre white-text">
+		<form action="time.php" method="post">
+		<center>
+		<br>
+		</br>
+		<br>
+		</br>
+		<br>
+		</br>
+		<br>
+		Time on (in 24 hours e.g 1900)
+		<input type="text" name="on"><br>
+		Time of (in 24 hours e.g 2100)
+		<input type="text" name="off"><br>
+	    Auto Timer (1 for on, 0 for off)
+		<input type="text" name="at"><br>
+		Auto Timer Override (1 for on, 0 for off)
+		<input type="text" name="ato"><br>
+		<input type="submit" value="Submit" class="black-text">
+		<center>
+		<form>
+		</div>
         <div id="mo" class="col centre white-text"><a href="mo.php"><?php echo $man; ?></a></div>
         <!-- Materialize core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
